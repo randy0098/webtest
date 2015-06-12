@@ -1,0 +1,1 @@
+var query = angular.module("query", []);

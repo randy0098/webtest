@@ -1,11 +1,14 @@
 package resteasy;
 
+import java.util.ArrayList;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Path("/rest")
@@ -16,8 +19,9 @@ public class RESTService {
 	@GET
 	@Path("/getOrgList")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getOrgList(){
-		return Response.status(200).entity("hp").build();
+	public ArrayList<Orgnization> getOrgList(){
+		ArrayList<Orgnization> orgs = orgDAO.getOrgList();
+		return orgs;
 	}
 	
     @GET @Path("/addOrg/{name}/{email}")
