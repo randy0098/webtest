@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div class="page-header">
-		<h1>Example Page Header</h1>
+		<h1>CURD例子</h1>
 	</div>
 	<div class="container-fluid">
 		<div class="row">
@@ -19,12 +19,12 @@
 			<div class="col-md-6">
 				<form class="form" role="form">
 					<div class="form-group">
-						<label for="email">Email:</label> <input type="email"
-							class="form-control" id="email" placeholder="Enter email">
+						<label for="name">name:</label> <input type="input"
+							class="form-control" id="name" placeholder="Enter name">
 					</div>
 					<div class="form-group">
-						<label for="pwd">Password:</label> <input type="password"
-							class="form-control" id="pwd" placeholder="Enter password">
+						<label for="email">email:</label> <input type="email"
+							class="form-control" id="email" placeholder="Enter email">
 					</div>
 					<center>
 						<button type="submit" class="btn btn-primary ">查询</button>
@@ -34,7 +34,8 @@
 				<table
 					class="table table-bordered table-striped table-hover table-condensed">
 					<div class="btn-group pull-right">
-						<button type="button" class="btn btn-primary">增加</button>
+						<button type="button" class="btn btn-primary" data-toggle="modal"
+							data-target="#insertPage" data-backdrop="static">增加</button>
 						<button type="button" class="btn btn-primary">修改</button>
 						<button type="button" class="btn btn-primary">删除</button>
 					</div>
@@ -65,6 +66,44 @@
 				</table>
 			</div>
 			<div class="col-md-3"></div>
+		</div>
+	</div>
+	
+	<!-- 增加页面 -->
+	<div class="modal fade" id="insertPage" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">增加页面</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="control-label col-md-2" for="name">Name:</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" id="name"
+									placeholder="Enter name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="email">Email:</label>
+							<div class="col-md-6">
+								<input type="email" class="form-control" id="email"
+									placeholder="Enter email">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-default">Submit</button>
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
 		</div>
 	</div>
 </body>
