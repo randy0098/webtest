@@ -3,12 +3,22 @@ package resteasy;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.ws.rs.FormParam;
+
 import org.springframework.jdbc.core.RowMapper;
 
 public class Orgnization implements RowMapper<Orgnization>{
+	@FormParam("name")
 	private String name;
+	
+	@FormParam("email")
 	private String email;
+	
 	private long id;
+	
+	public Orgnization() {
+		
+	}
 	
 	public String getName() {
 		return name;
