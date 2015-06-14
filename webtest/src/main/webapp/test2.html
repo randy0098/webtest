@@ -14,10 +14,10 @@
 	<div class="page-header">
 		<h1 class="text-center">CURD例子</h1>
 	</div>
-	<div class="container-fluid" ng-app="query" ng-controller="queryCtrl">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-3"></div>
-			<div class="col-md-6">
+			<div class="col-md-6" ng-app="query" ng-controller="queryCtrl">
 				<form class="form" role="form">
 					<div class="form-group">
 						<label for="name">Name:</label> <input type="input"
@@ -59,7 +59,7 @@
 	</div>
 	
 	<!-- 增加页面 -->
-	<div class="modal fade" id="insertPage" role="dialog">
+	<div class="modal fade" id="insertPage" role="dialog" ng-app="insert" ng-controller="insertCtrl">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -67,7 +67,7 @@
 					<h4 class="modal-title">增加页面</h4>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal" role="form">
+					<form class="form-horizontal" role="form" id="insertForm">
 						<div class="form-group">
 							<label class="control-label col-md-2" for="name">Name:</label>
 							<div class="col-md-6">
@@ -84,7 +84,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<button type="submit" class="btn btn-default">Submit</button>
+								<button type="button" class="btn btn-default" ng-click="insert()">Submit</button>
 								<button type="button" class="btn btn-default"
 									data-dismiss="modal">Close</button>
 							</div>
@@ -95,7 +95,7 @@
 
 		</div>
 	</div>
-	<script src="bo/query.js"></script>
-	<script src="bo/queryCtrl.js"></script>	
+	<script src="bo/main.js"></script>
+	<script src="bo/mainCtrl.js"></script>	
 </body>
 </html>
