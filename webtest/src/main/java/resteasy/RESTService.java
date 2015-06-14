@@ -3,7 +3,6 @@ package resteasy;
 import java.util.ArrayList;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -35,7 +34,7 @@ public class RESTService {
     	org.setName(form.getName());
     	org.setEmail(form.getEmail());
     	orgDAO.addOrg(org);
-    	return Response.status(200).entity("success").build();
+    	return Response.status(200).build();
     }
     
     @GET @Path("/addOrg/{name}/{email}")

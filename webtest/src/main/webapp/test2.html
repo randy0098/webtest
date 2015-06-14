@@ -67,6 +67,7 @@
 					<h4 class="modal-title">增加页面</h4>
 				</div>
 				<div class="modal-body">
+					<p class="text-success text-center" ng-bind="hint"></p>
 					<form id="insertForm" class="form-horizontal" role="form" method="post" action="http://localhost:8080/webtest/rest/addOrg" >
 						<div class="form-group">
 							<label class="control-label col-md-2" for="name">Name:</label>
@@ -84,8 +85,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<!-- <button type="button" class="btn btn-default" ng-click="insert()">Submit</button> -->
-								<button type="submit" class="btn btn-default">Submit</button>
+								<button type="button" class="btn btn-default" ng-click="insert()">Submit</button>
 								<button type="button" class="btn btn-default"
 									data-dismiss="modal">Close</button>
 							</div>
