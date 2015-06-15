@@ -47,6 +47,13 @@ public class RESTService {
     	return Response.status(200).entity("success").build();
     }
     
+    @GET @Path("/getOneOrg/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Orgnization getOneOrg(@PathParam("id") long id) throws Exception {
+    	Orgnization org = orgDAO.getOneOrg(id);
+    	return org;
+    }
+    
     @GET @Path("/updateOrg/{name}/{email}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateOrg(@PathParam("name") String name, @PathParam("email") String email) throws Exception {

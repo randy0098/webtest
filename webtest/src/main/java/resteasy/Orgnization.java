@@ -41,7 +41,7 @@ public class Orgnization implements RowMapper<Orgnization>{
 	
 	public Orgnization mapRow(ResultSet rs, int value) throws SQLException {
 		Orgnization org = new Orgnization();
-		org.setId(rs.getInt("id"));
+		org.setId(rs.getLong("id"));
 		org.setName(rs.getString("name"));
 		org.setEmail(rs.getString("email"));
 		return org;

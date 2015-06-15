@@ -18,7 +18,7 @@ public class OrgnizationDAO {
 	}
 	
 	public Orgnization getOneOrg(long id){
-		Orgnization org = (Orgnization)jdbcTemplate.queryForObject("select * from orgnization where id=?", new Object[] {id}, Orgnization.class);
+		Orgnization org = (Orgnization)jdbcTemplate.queryForObject("select * from orgnization where id=?", new Object[] {id}, new Orgnization());
 		return org;  
 	}
 	
