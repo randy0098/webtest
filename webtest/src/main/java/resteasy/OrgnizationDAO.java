@@ -27,6 +27,20 @@ public class OrgnizationDAO {
 		return orgList;  
 	}
 	
+	public ArrayList<Orgnization> getOrgList(Orgnization form){
+		String name = form.getName();
+		String email = form.getEmail();
+		String sql = "select * from orgnization where 1=1 ";
+		if(name!=null && !name.equalsIgnoreCase("")){
+			sql = sql + " and name like '%" + name + "%'";
+		}
+		if(email!=null && !email.equalsIgnoreCase("")){
+			sql = sql + " and email like '%" + email + "%'";
+		}
+		ArrayList<Orgnization> orgList = (ArrayList<Orgnization>)jdbcTemplate.query(sql,new Orgnization());
+		return orgList;  
+	}
+	
 	//注意这里ids是String，是带有双引号的。
 	public void deleteOrgs(String ids){
 		jdbcTemplate.update("delete from orgnization where id in ("+ids+")");

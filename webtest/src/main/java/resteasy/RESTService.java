@@ -19,6 +19,16 @@ public class RESTService {
     @Autowired
     private OrgnizationDAO orgDAO;
     
+	@POST
+	@Path("/getOrgList")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<Orgnization> getOrgList(@Form Orgnization form){
+		ArrayList<Orgnization> orgs = orgDAO.getOrgList(form);
+		return orgs;
+	}
+	
+	@Deprecated
 	@GET
 	@Path("/getOrgList")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -37,6 +47,7 @@ public class RESTService {
     	return Response.status(200).build();
     }
     
+    @Deprecated
     @GET @Path("/addOrg/{name}/{email}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response addOrg(@PathParam("name") String name, @PathParam("email") String email) throws Exception {
@@ -65,6 +76,7 @@ public class RESTService {
     	return Response.status(200).build();
     }
     
+    @Deprecated
     @GET @Path("/updateOrg/{name}/{email}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateOrg(@PathParam("name") String name, @PathParam("email") String email) throws Exception {
@@ -75,6 +87,7 @@ public class RESTService {
     	return Response.status(200).entity("success").build();
     }
     
+    @Deprecated
     @GET @Path("/deleteOrg/{name}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteOrg(@PathParam("name") String name) throws Exception {

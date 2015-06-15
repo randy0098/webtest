@@ -1,6 +1,11 @@
 query.controller("queryCtrl", function($scope, $http) {
-	$scope.search = function() {
-		$http.get("http://localhost:8080/webtest/rest/getOrgList").success(
+	$scope.searchBtn = function() {
+//		$http.get("http://localhost:8080/webtest/rest/getOrgList").success(
+//				function(response) {
+//					$scope.orgs = response;
+//				});
+		var data = $("#queryForm").serialize();
+		$http.post('http://localhost:8080/webtest/rest/getOrgList', data).success(
 				function(response) {
 					$scope.orgs = response;
 				});
