@@ -27,6 +27,11 @@ public class OrgnizationDAO {
 		return orgList;  
 	}
 	
+	//注意这里ids是String，是带有双引号的。
+	public void deleteOrgs(String ids){
+		jdbcTemplate.update("delete from orgnization where id in ("+ids+")");
+	}
+	
 	public void deleteOrg(Orgnization org){
 		jdbcTemplate.update("delete from orgnization where name=?", new Object[] {org.getName()});
 	}

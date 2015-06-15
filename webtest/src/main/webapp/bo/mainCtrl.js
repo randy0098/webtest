@@ -6,15 +6,17 @@ query.controller("queryCtrl", function($scope, $http) {
 				});
 	};
 	
-	$scope.update = function() {
+	$scope.updateBtn = function() {
 		var boxes = $("input:checked");
 		var size = boxes.size();
 		if (size == 0) {
-			$("#alertHint").html("请选中一条记录信息进行修改！");
-			$("#alert").modal();
+			//$("#alertHint").html("请选中一条记录信息进行修改！");
+			//$("#alert").modal();
+			bootbox.alert("请选中一条记录信息进行修改！");
 		} else if (size > 1) {
-			$("#alertHint").html("请选中一条记录信息进行修改！");
-			$("#alert").modal();
+			//$("#alertHint").html("请选中一条记录信息进行修改！");
+			//$("#alert").modal();
+			bootbox.alert("请选中一条记录信息进行修改！");
 		} else if (size == 1) {
 			var id = $("input:checked").val();
 			$http.get("http://localhost:8080/webtest/rest/getOneOrg/"+id).success(
@@ -28,6 +30,28 @@ query.controller("queryCtrl", function($scope, $http) {
 		}
 	};
 
+	$scope.deleteBtn = function() {
+		var boxes = $("input:checked");
+		var ids = "";
+		boxes.each(function() {
+			ids = ids + "," + $(this).val();
+		});
+		// 截掉第一个","。
+		ids = ids.substr(1, ids.length - 1);
+		if (ids == "") {
+			bootbox.alert("请选中一条记录信息进行删除！");
+		} else {
+			bootbox.confirm("确认删除记录吗?", function(result) {
+				if (result == true) {
+					$http.get(
+							"http://localhost:8080/webtest/rest/deleteOrgs/"
+									+ ids).success(function(response) {
+
+					});
+				}
+			});
+		}
+	};
 });
 
 insert.controller("insertCtrl", function($scope, $http) {

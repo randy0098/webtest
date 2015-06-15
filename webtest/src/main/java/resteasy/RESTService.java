@@ -83,4 +83,11 @@ public class RESTService {
     	orgDAO.deleteOrg(org);
     	return Response.status(200).entity("success").build();
     }
+    
+    @GET @Path("/deleteOrgs/{ids}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteOrgs(@PathParam("ids") String ids) throws Exception {
+    	orgDAO.deleteOrgs(ids);
+    	return Response.status(200).build();
+    }
 }
