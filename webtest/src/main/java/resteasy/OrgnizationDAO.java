@@ -14,7 +14,7 @@ public class OrgnizationDAO {
 	}
 	
 	public void updateOrg(Orgnization org){
-		jdbcTemplate.update("update orgnization set email=? where name=?", new Object[] {org.getEmail(),org.getName()});
+		jdbcTemplate.update("update orgnization set email=?,name=? where id=?", new Object[] {org.getEmail(),org.getName(),org.getId()});
 	}
 	
 	public Orgnization getOneOrg(long id){

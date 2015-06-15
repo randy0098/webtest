@@ -93,7 +93,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="x in orgs">
+						<tr ng-repeat="x in orgs" onclick="selectCheckbox(this)">
 							<td><input type="checkbox" name="grid_checkbox"
 								value="{{x.id}}"></td>
 							<td>{{ x.name }}</td>
@@ -122,14 +122,14 @@
 							<label class="control-label col-md-2" for="name">Name:</label>
 							<div class="col-md-6">
 								<input type="text" class="form-control" id="name" name="name"
-									placeholder="Enter name">
+									placeholder="Enter Name">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-2" for="email">Email:</label>
 							<div class="col-md-6">
 								<input type="email" class="form-control" id="email" name="email"
-									placeholder="Enter email">
+									placeholder="Enter Email">
 							</div>
 						</div>
 						<div class="form-group">
@@ -149,7 +149,7 @@
 	<!-- 修改页面 -->
 	<div class="modal fade" id="updatePage" role="dialog" ng-app="update"
 		ng-controller="updateCtrl">
-		<input type="text" id="org" ng-model="org">
+		
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -158,25 +158,26 @@
 				</div>
 				<div class="modal-body">
 					<p class="text-success text-center" ng-bind="hint"></p>
-					<form id="insertForm" class="form-horizontal" role="form">
+					<form id="updateForm" class="form-horizontal" role="form">
+						<input type="hidden" id="update_id" name="id" >
 						<div class="form-group">
 							<label class="control-label col-md-2" for="name">Name:</label>
 							<div class="col-md-6">
 								<input type="text" class="form-control" id="update_name" name="name"
-									placeholder="Enter name">
+									placeholder="Enter Name">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-2" for="email">Email:</label>
 							<div class="col-md-6">
 								<input type="email" class="form-control" id="update_email" name="email"
-									placeholder="Enter email">
+									placeholder="Enter Email">
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<button type="button" class="btn btn-default"
-									ng-click="insert()">提交</button>
+									ng-click="update()">提交</button>
 								<button type="button" class="btn btn-default"
 									data-dismiss="modal">关闭</button>
 							</div>
@@ -186,6 +187,7 @@
 			</div>
 		</div>
 	</div>
+	<script src="common/common.js"></script>
 	<script src="bo/main.js"></script>
 	<script src="bo/mainCtrl.js"></script>
 </body>

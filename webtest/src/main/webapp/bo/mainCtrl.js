@@ -20,6 +20,7 @@ query.controller("queryCtrl", function($scope, $http) {
 			$http.get("http://localhost:8080/webtest/rest/getOneOrg/"+id).success(
 					function(response) {
 						//$("#org").val(response);
+						$("#update_id").val(response.id);
 						$("#update_name").val(response.name);
 						$("#update_email").val(response.email);
 						$("#updatePage").modal("show");
@@ -41,7 +42,13 @@ insert.controller("insertCtrl", function($scope, $http) {
 });
 
 update.controller("updateCtrl", function($scope, $http) {
-	
+	$scope.update = function() {
+		var data = $("#updateForm").serialize();
+		$http.post('http://localhost:8080/webtest/rest/updateOrg', data).success(
+				function() {
+					$scope.hint = "Save Complete";
+				});
+	};
 });
 
 // AngularJS只能自动加载第一个ng-app，所以这里要手动加载另外的ng-app。

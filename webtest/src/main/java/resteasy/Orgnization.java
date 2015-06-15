@@ -14,6 +14,7 @@ public class Orgnization implements RowMapper<Orgnization>{
 	@FormParam("email")
 	private String email;
 	
+	@FormParam("id")
 	private long id;
 	
 	public Orgnization() {

@@ -54,6 +54,17 @@ public class RESTService {
     	return org;
     }
     
+    @POST @Path("/updateOrg")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response updateOrg(@Form Orgnization form) throws Exception {
+    	Orgnization org = new Orgnization();
+    	org.setId(form.getId());
+    	org.setName(form.getName());
+    	org.setEmail(form.getEmail());
+    	orgDAO.updateOrg(org);
+    	return Response.status(200).build();
+    }
+    
     @GET @Path("/updateOrg/{name}/{email}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateOrg(@PathParam("name") String name, @PathParam("email") String email) throws Exception {
