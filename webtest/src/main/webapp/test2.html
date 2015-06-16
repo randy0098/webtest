@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>CURD Example</title>
-<meta charset="utf-8">
+<meta charset="utf-8" >
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="plugins/bootstrap-3.3.4-dist/css/bootstrap.min.css">
@@ -32,7 +32,7 @@
 							class="form-control" id="email" name="email" placeholder="Enter Email">
 					</div>
 					<center>
-						<button type="button" ng-click="searchBtn()" class="btn btn-primary">查询</button>
+						<button type="button" ng-click="queryBtn()" class="btn btn-primary">查询</button>
 						<button type="reset" class="btn btn-primary">重填</button>
 					</center>
 				</form>
@@ -60,6 +60,19 @@
 						</tr>
 					</tbody>
 				</table>
+				<!-- 
+					<center>
+						<ul class="pagination">
+							<li><a href="#">&laquo;</a></li>
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#">&raquo;</a></li>
+						</ul>
+					</center>
+				-->
 			</div>
 			<div class="col-md-3"></div>
 		</div>
@@ -93,9 +106,9 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<button type="button" class="btn btn-default"
+								<button type="button" class="btn btn-primary"
 									ng-click="insert()">提交</button>
-								<button type="button" class="btn btn-default"
+								<button type="button" class="btn btn-primary"
 									data-dismiss="modal">关闭</button>
 							</div>
 						</div>
@@ -135,9 +148,9 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<button type="button" class="btn btn-default"
+								<button type="button" class="btn btn-primary"
 									ng-click="update()">提交</button>
-								<button type="button" class="btn btn-default"
+								<button type="button" class="btn btn-primary"
 									data-dismiss="modal">关闭</button>
 							</div>
 						</div>

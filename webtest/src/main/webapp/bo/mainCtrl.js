@@ -1,5 +1,5 @@
 query.controller("queryCtrl", function($scope, $http) {
-	$scope.searchBtn = function() {
+	$scope.queryBtn = function() {
 //		$http.get("http://localhost:8080/webtest/rest/getOrgList").success(
 //				function(response) {
 //					$scope.orgs = response;
@@ -15,13 +15,13 @@ query.controller("queryCtrl", function($scope, $http) {
 		var boxes = $("input:checked");
 		var size = boxes.size();
 		if (size == 0) {
-			//$("#alertHint").html("ÇëÑ¡ÖĞÒ»Ìõ¼ÇÂ¼ĞÅÏ¢½øĞĞĞŞ¸Ä£¡");
+			//$("#alertHint").html("è¯·é€‰ä¸­ä¸€æ¡è®°å½•ä¿¡æ¯è¿›è¡Œä¿®æ”¹ï¼");
 			//$("#alert").modal();
-			bootbox.alert("ÇëÑ¡ÖĞÒ»Ìõ¼ÇÂ¼ĞÅÏ¢½øĞĞĞŞ¸Ä£¡");
+			bootbox.alert("è¯·é€‰ä¸­ä¸€æ¡è®°å½•ä¿¡æ¯è¿›è¡Œä¿®æ”¹ï¼");
 		} else if (size > 1) {
-			//$("#alertHint").html("ÇëÑ¡ÖĞÒ»Ìõ¼ÇÂ¼ĞÅÏ¢½øĞĞĞŞ¸Ä£¡");
+			//$("#alertHint").html("è¯·é€‰ä¸­ä¸€æ¡è®°å½•ä¿¡æ¯è¿›è¡Œä¿®æ”¹ï¼");
 			//$("#alert").modal();
-			bootbox.alert("ÇëÑ¡ÖĞÒ»Ìõ¼ÇÂ¼ĞÅÏ¢½øĞĞĞŞ¸Ä£¡");
+			bootbox.alert("è¯·é€‰ä¸­ä¸€æ¡è®°å½•ä¿¡æ¯è¿›è¡Œä¿®æ”¹ï¼");
 		} else if (size == 1) {
 			var id = $("input:checked").val();
 			$http.get("http://localhost:8080/webtest/rest/getOneOrg/"+id).success(
@@ -30,7 +30,10 @@ query.controller("queryCtrl", function($scope, $http) {
 						$("#update_id").val(response.id);
 						$("#update_name").val(response.name);
 						$("#update_email").val(response.email);
-						$("#updatePage").modal("show");
+						$("#updatePage").modal({
+							backdrop: 'static',
+							show: true
+						});
 					});
 		}
 	};
@@ -41,12 +44,12 @@ query.controller("queryCtrl", function($scope, $http) {
 		boxes.each(function() {
 			ids = ids + "," + $(this).val();
 		});
-		// ½ØµôµÚÒ»¸ö","¡£
+		//æˆªæ‰ç¬¬ä¸€ä¸ª","ã€‚
 		ids = ids.substr(1, ids.length - 1);
 		if (ids == "") {
-			bootbox.alert("ÇëÑ¡ÖĞÒ»Ìõ¼ÇÂ¼ĞÅÏ¢½øĞĞÉ¾³ı£¡");
+			bootbox.alert("è¯·é€‰ä¸­ä¸€æ¡è®°å½•ä¿¡æ¯è¿›è¡Œåˆ é™¤ï¼");
 		} else {
-			bootbox.confirm("È·ÈÏÉ¾³ı¼ÇÂ¼Âğ?", function(result) {
+			bootbox.confirm("ç¡®è®¤åˆ é™¤è®°å½•å—ï¼Ÿ", function(result) {
 				if (result == true) {
 					$http.get(
 							"http://localhost:8080/webtest/rest/deleteOrgs/"
@@ -65,7 +68,7 @@ insert.controller("insertCtrl", function($scope, $http) {
 		var data = $("#insertForm").serialize();
 		$http.post('http://localhost:8080/webtest/rest/addOrg', data).success(
 				function() {
-					$scope.hint = "Save Complete";
+					$scope.hint = "ä¿å­˜æˆåŠŸï¼";
 				});
 	};
 });
@@ -75,12 +78,12 @@ update.controller("updateCtrl", function($scope, $http) {
 		var data = $("#updateForm").serialize();
 		$http.post('http://localhost:8080/webtest/rest/updateOrg', data).success(
 				function() {
-					$scope.hint = "Save Complete";
+					$scope.hint = "ä¿å­˜æˆåŠŸï¼";
 				});
 	};
 });
 
-// AngularJSÖ»ÄÜ×Ô¶¯¼ÓÔØµÚÒ»¸öng-app£¬ËùÒÔÕâÀïÒªÊÖ¶¯¼ÓÔØÁíÍâµÄng-app¡£
+//AngularJSé»˜è®¤åªè£…è½½ç¬¬ä¸€ä¸ªng-appï¼Œæ‰€ä»¥è¿™é‡Œè¦æ‰‹åŠ¨è£…è½½å…¶ä»–çš„ng-appï¼
 angular.element(document).ready(function() {
 	angular.bootstrap(insertPage, [ 'insert' ]);
 });
