@@ -1,14 +1,22 @@
 query.controller("queryCtrl", function($scope, $http) {
 	$scope.queryBtn = function() {
-//		$http.get("http://localhost:8080/webtest/rest/getOrgList").success(
-//				function(response) {
-//					$scope.orgs = response;
-//				});
-		var data = $("#queryForm").serialize();
-		$http.post('http://localhost:8080/webtest/rest/getOrgList', data).success(
-				function(response) {
-					$scope.orgs = response;
-				});
+	    $('#queryForm').bootstrapValidator({
+	        feedbackIcons: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        }
+	    });
+	    
+		var bootstrapValidator = $('#queryForm').data('bootstrapValidator');
+		var result = bootstrapValidator.isValid();
+		if(result == true){
+			var data = $("#queryForm").serialize();
+			$http.post('http://localhost:8080/webtest/rest/getOrgList', data).success(
+					function(response) {
+						$scope.orgs = response;
+					});
+		}
 	};
 	
 	$scope.updateBtn = function() {
