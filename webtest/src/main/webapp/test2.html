@@ -27,6 +27,29 @@
 		alert(result);
 	}
 */	
+
+	$(document).ready(function() {
+		$('#queryForm').bootstrapValidator({
+			feedbackIcons : {
+				valid : 'glyphicon glyphicon-ok',
+				invalid : 'glyphicon glyphicon-remove',
+				validating : 'glyphicon glyphicon-refresh'
+			}
+		});
+		
+		$('#insertForm').bootstrapValidator({
+			feedbackIcons : {
+				valid : 'glyphicon glyphicon-ok',
+				invalid : 'glyphicon glyphicon-remove',
+				validating : 'glyphicon glyphicon-refresh'
+			}
+		})
+		.on('success.form.bv', function(e) {
+            // Prevent submit form
+            e.preventDefault();
+        });
+	});
+
 </script>
 </head>
 <body>
@@ -103,26 +126,30 @@
 					<h4 class="modal-title">增加页面</h4>
 				</div>
 				<div class="modal-body">
-					<p class="text-success text-center" ng-bind="hint"></p>
+					<!-- <p class="text-success text-center" ng-bind="hint"></p> -->
+					<div class="alert alert-success" ng-show="showFlag">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<center><strong>{{hint}}</strong></center>
+					</div>
 					<form id="insertForm" class="form-horizontal" role="form">
 						<div class="form-group">
 							<label class="control-label col-md-2" for="name">Name:</label>
 							<div class="col-md-6">
 								<input type="text" class="form-control" id="name" name="name"
-									placeholder="Enter Name">
+									placeholder="Enter Name" data-bv-notempty data-bv-notempty-message="The Name is required">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-2" for="email">Email:</label>
 							<div class="col-md-6">
 								<input type="email" class="form-control" id="email" name="email"
-									placeholder="Enter Email">
+									placeholder="Enter Email" data-bv-notempty data-bv-notempty-message="The Email is required">
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<button type="button" class="btn btn-primary"
-									ng-click="insert()">提交</button>
+								<button type="submit" class="btn btn-primary"
+									ng-click="insertBtn()">提交</button>
 								<button type="button" class="btn btn-primary"
 									data-dismiss="modal">关闭</button>
 							</div>

@@ -1,13 +1,5 @@
 query.controller("queryCtrl", function($scope, $http) {
 	$scope.queryBtn = function() {
-	    $('#queryForm').bootstrapValidator({
-	        feedbackIcons: {
-	            valid: 'glyphicon glyphicon-ok',
-	            invalid: 'glyphicon glyphicon-remove',
-	            validating: 'glyphicon glyphicon-refresh'
-	        }
-	    });
-	    
 		var bootstrapValidator = $('#queryForm').data('bootstrapValidator');
 		var result = bootstrapValidator.isValid();
 		if(result == true){
@@ -71,13 +63,24 @@ query.controller("queryCtrl", function($scope, $http) {
 });
 
 insert.controller("insertCtrl", function($scope, $http) {
-	$scope.insert = function() {
-		// var data = $("#insertForm").serializeArray();
-		var data = $("#insertForm").serialize();
-		$http.post('http://localhost:8080/webtest/rest/addOrg', data).success(
-				function() {
-					$scope.hint = "保存成功！";
-				});
+	$scope.showFlag = false;
+	$scope.insertBtn = function() {
+		var bootstrapValidator = $('#insertForm').data('bootstrapValidator');
+		var result = bootstrapValidator.isValid();
+		if (result == true) {
+			var data = $("#insertForm").serialize();
+			$http.post('http://localhost:8080/webtest/rest/addOrg', data)
+					.success(
+							function() {
+								$scope.showFlag = true;
+								$scope.hint = "保存成功！";
+								$(':input', '#insertForm').not(
+										':button, :submit, :reset, :hidden')
+										.val('').removeAttr('checked')
+										.removeAttr('selected');
+								bootstrapValidator.resetForm();
+							});
+		}
 	};
 });
 
