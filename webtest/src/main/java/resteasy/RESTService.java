@@ -38,25 +38,25 @@ public class RESTService {
 	}
 	
     @POST @Path("/addOrg")
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response addOrg(@Form Orgnization form) throws Exception {
-    	Orgnization org = new Orgnization();
-    	org.setName(form.getName());
-    	org.setEmail(form.getEmail());
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addOrg(Orgnization org) throws Exception {
+//    	Orgnization org = new Orgnization();
+//    	org.setName(form.getName());
+//    	org.setEmail(form.getEmail());
     	orgDAO.addOrg(org);
     	return Response.status(200).build();
     }
     
-    @Deprecated
-    @GET @Path("/addOrg/{name}/{email}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response addOrg(@PathParam("name") String name, @PathParam("email") String email) throws Exception {
-    	Orgnization org = new Orgnization();
-    	org.setName(name);
-    	org.setEmail(email);
-    	orgDAO.addOrg(org);
-    	return Response.status(200).entity("success").build();
-    }
+//    @Deprecated
+//    @GET @Path("/addOrg/{name}/{email}")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response addOrg(@PathParam("name") String name, @PathParam("email") String email) throws Exception {
+//    	Orgnization org = new Orgnization();
+//    	org.setName(name);
+//    	org.setEmail(email);
+//    	orgDAO.addOrg(org);
+//    	return Response.status(200).entity("success").build();
+//    }
     
     @GET @Path("/getOneOrg/{id}")
     @Produces(MediaType.APPLICATION_JSON)

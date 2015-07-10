@@ -1,0 +1,57 @@
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<form id="queryForm" class="form" role="form">
+			<div class="form-group">
+				<label for="name">Name:</label> <input type="input"
+					class="form-control" id="name" name="name" placeholder="Enter Name">
+			</div>
+			<div class="form-group">
+				<label for="email">Email:</label> <input type="text"
+					class="form-control" id="email" name="email"
+					placeholder="Enter Email">
+			</div>
+			<center>
+				<button type="button" ng-click="queryBtn()" class="btn btn-primary">查询</button>
+				<button type="reset" class="btn btn-primary">重填</button>
+			</center>
+		</form>
+		<table
+			class="table table-bordered table-striped table-hover table-condensed">
+			<div class="btn-group pull-right">
+				<button type="button" class="btn btn-primary" ng-click="addBtn()">增加</button>
+				<button type="button" class="btn btn-primary" ng-click="updateBtn()">修改</button>
+				<button type="button" class="btn btn-primary" ng-click="deleteBtn()">删除</button>
+			</div>
+			<thead>
+				<tr>
+					<th class="col-md-1"></th>
+					<th class="col-md-2">Name</th>
+					<th class="col-md-3">Email</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="x in orgs" onclick="selectCheckbox(this)">
+					<td><input type="checkbox" name="grid_checkbox"
+						value="{{x.id}}"></td>
+					<td>{{ x.name }}</td>
+					<td>{{ x.email }}</td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- 
+					<center>
+						<ul class="pagination">
+							<li><a href="#">&laquo;</a></li>
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#">&raquo;</a></li>
+						</ul>
+					</center>
+				-->
+	</div>
+	<div class="col-md-3"></div>
+</div>
