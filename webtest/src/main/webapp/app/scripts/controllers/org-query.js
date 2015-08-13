@@ -62,6 +62,23 @@ angular.module('angulartestApp').controller(
 				}
 			};
 
+			$scope.deleteBtn = function() {
+				var checkboxes = $("input[type='checkbox']:checked");
+				if (checkboxes.size() == 0) {
+					alert("请选中至少一条记录！");
+				} else {
+					if (confirm("确定要删除记录吗？")) {
+						var ids = "";
+						checkboxes.each(function(i, box) {
+							ids = ids + "," + box.value;
+						});
+						ids = ids.substr(1, ids.length - 1);
+						orgService.deleteOrg(ids).then(function(result) {
+							alert("删除成功！");
+						});
+					}
+				}
+			};
 		});
 
 angular.module('angulartestApp').controller('addOrgCtrl',
@@ -80,7 +97,7 @@ angular.module('angulartestApp').controller('addOrgCtrl',
 angular.module('angulartestApp').controller('updateOrgCtrl',
 		function($scope, orgService, $modalInstance, org) {
 			$scope.org = org;
-			
+
 			$scope.ok = function() {
 				orgService.updateOrg($scope.org).then(function(result) {
 					$modalInstance.close();

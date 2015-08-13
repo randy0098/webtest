@@ -49,6 +49,20 @@ angular.module('angulartestApp').factory('orgService',
 						deferred.reject(error);
 					});
 					return deferred.promise;
+				},
+				deleteOrg : function(ids) {
+					var deferred = $q.defer();
+					$http({
+						"method" : "GET",
+						"url" : "http://localhost:8080/webtest/rest/deleteOrgs/"+ids
+					}).success(function(result) {
+						console.log(result);
+						deferred.resolve(result);
+					}).error(function(error) {
+						console.log(error);
+						deferred.reject(error);
+					});
+					return deferred.promise;
 				}
 			}
 		} ]);
