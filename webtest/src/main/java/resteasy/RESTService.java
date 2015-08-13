@@ -66,15 +66,23 @@ public class RESTService {
     }
     
     @POST @Path("/updateOrg")
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response updateOrg(@Form Orgnization form) throws Exception {
-    	Orgnization org = new Orgnization();
-    	org.setId(form.getId());
-    	org.setName(form.getName());
-    	org.setEmail(form.getEmail());
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateOrg(Orgnization org) throws Exception {
     	orgDAO.updateOrg(org);
     	return Response.status(200).build();
     }
+    
+//    @Deprecated
+//    @POST @Path("/updateOrg")
+//    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+//    public Response updateOrg(@Form Orgnization form) throws Exception {
+//    	Orgnization org = new Orgnization();
+//    	org.setId(form.getId());
+//    	org.setName(form.getName());
+//    	org.setEmail(form.getEmail());
+//    	orgDAO.updateOrg(org);
+//    	return Response.status(200).build();
+//    }
     
     @Deprecated
     @GET @Path("/updateOrg/{name}/{email}")
