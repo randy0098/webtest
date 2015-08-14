@@ -1,3 +1,30 @@
+<script type="text/javascript">
+//点击一行时选中此行的checkbox
+function selectCheckbox(e){
+	var checkboxObj = $(e).find("input[name='grid_checkbox']");
+	var value = checkboxObj.is(":checked");
+	if(value == true){
+		checkboxObj.prop("checked",false);
+		$(e).css("background", "");
+	}else{
+		checkboxObj.prop("checked",true);
+		$(e).css("background", "#fbec87");
+	}
+}
+
+//点击checkbox时就选中此行
+function changeBGColor(e){
+	var value = $(e).is(":checked");
+	var trObj = $(e).parent().parent();
+	if(value == true){
+		trObj.css("background", "#fbec87");
+	}else{
+		trObj.css("background", "");
+	}
+}
+
+</script>
+
 <div class="row">
 	<div class="col-md-3"></div>
 	<div class="col-md-6">
@@ -33,7 +60,7 @@
 			<tbody>
 				<tr ng-repeat="x in orgs" onclick="selectCheckbox(this)">
 					<td><input type="checkbox" name="grid_checkbox"
-						value="{{x.id}}"></td>
+						value="{{x.id}}" onclick="changeBGColor(this);event.stopPropagation();"></td>
 					<td>{{ x.name }}</td>
 					<td>{{ x.email }}</td>
 				</tr>

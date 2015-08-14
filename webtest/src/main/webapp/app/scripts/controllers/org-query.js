@@ -8,6 +8,21 @@
 angular.module('angulartestApp').controller(
 		'OrgQueryCtrl',
 		function($scope, orgService, $http, $modal, $log) {
+			
+//			$scope.selectCheckbox = function(e) {
+//				var checkboxObj = $(e).find("input[name='grid_checkbox']");
+//				alert(checkboxObj);
+//				var value = checkboxObj.is(":checked");
+//				alert(value);
+//				if(value == true){
+//					checkboxObj.prop("checked",false);
+//					$(e).css("background", "");
+//				}else{
+//					checkboxObj.prop("checked",true);
+//					$(e).css("background", "#fbec87");
+//				}
+//			};
+			
 			$scope.queryBtn = function() {
 				var data = $("#queryForm").serialize();
 				$http
