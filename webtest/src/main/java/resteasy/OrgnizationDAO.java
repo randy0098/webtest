@@ -37,6 +37,7 @@ public class OrgnizationDAO {
 		if(email!=null && !email.equalsIgnoreCase("")){
 			sql = sql + " and email like '%" + email + "%'";
 		}
+		System.out.println("sql:" + sql);
 		ArrayList<Orgnization> orgList = (ArrayList<Orgnization>)jdbcTemplate.query(sql,new Orgnization());
 		return orgList;  
 	}

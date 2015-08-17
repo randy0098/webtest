@@ -23,17 +23,28 @@ angular.module('angulartestApp').controller(
 //				}
 //			};
 			
+//			$scope.queryBtn = function() {
+//				var data = $("#queryForm").serialize();
+//				$http
+//						.get('http://localhost:8080/webtest/rest/getOrgList',
+//								data).success(function(response) {
+//							$scope.orgs = response;
+//						}).error(function(data, status, headers, config) {
+//
+//						});
+//			};
+
 			$scope.queryBtn = function() {
-				var data = $("#queryForm").serialize();
-				$http
-						.get('http://localhost:8080/webtest/rest/getOrgList',
-								data).success(function(response) {
-							$scope.orgs = response;
-						}).error(function(data, status, headers, config) {
-
-						});
+				orgService.queryOrg($scope.form).then(function(result) {
+					$scope.orgs = result;
+				});
 			};
-
+			
+			//注意默认的reset button只能清除页面值，而不会清除$scope中的值。
+			$scope.resetBtn = function() {
+				$scope.form = null;
+			};
+			
 			$scope.addBtn = function() {
 				var modalInstance = $modal.open({
 					animation : true,

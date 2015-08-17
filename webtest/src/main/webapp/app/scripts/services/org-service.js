@@ -8,6 +8,25 @@
 angular.module('angulartestApp').factory('orgService',
 		[ '$http', '$q', function($http, $q) {
 			return {
+				queryOrg : function(form) {
+					//解决rest端空字符串不能自动转换成json对象的问题
+					if(form==null || form==""){
+						form = "{}";
+					}
+					
+					var deferred = $q.defer();
+					$http({
+						"method" : "POST",
+						"url" : "http://localhost:8080/webtest/rest/getOrgList",
+						"data" : form
+					}).success(function(result) {
+						deferred.resolve(result);
+					}).error(function(error) {
+						console.log(error);
+						deferred.reject(error);
+					});
+					return deferred.promise;
+				},
 				addOrg : function(org) {
 					var deferred = $q.defer();
 					$http({
