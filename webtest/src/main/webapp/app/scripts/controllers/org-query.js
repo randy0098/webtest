@@ -45,6 +45,8 @@ angular.module('angulartestApp').controller(
 				modalInstance.result.then(function() {
 				}, function() {
 					$log.info('Modal dismissed at: ' + new Date());
+//					$window.location.reload();
+					$scope.queryBtn();
 				});
 			};
 
