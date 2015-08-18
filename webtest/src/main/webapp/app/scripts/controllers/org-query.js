@@ -34,6 +34,15 @@ angular.module('angulartestApp').controller(
 //						});
 //			};
 
+			//分页跳转
+			$scope.pagingBtn = function(action){
+				$scope.form = {};
+				$scope.form.action = action;
+				orgService.queryOrgPage($scope.form).then(function(result) {
+					$scope.page = result;
+				});
+			}
+			
 			$scope.queryBtn = function() {
 				orgService.queryOrg($scope.form).then(function(result) {
 					$scope.orgs = result;

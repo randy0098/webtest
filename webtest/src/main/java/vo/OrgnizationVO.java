@@ -14,6 +14,10 @@ public class OrgnizationVO extends BaseVO{
 	
 	private long id;
 	
+	private String action;
+	
+	private int currentPageIndex; 
+	
 	public String getName() {
 		return name;
 	}
@@ -31,5 +35,17 @@ public class OrgnizationVO extends BaseVO{
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public String getAction() {
+		return action;
+	}
+	public void setAction(String action) {
+		this.action = action;
+	}
+	public int getCurrentPageIndex() {
+		return currentPageIndex;
+	}
+	public void setCurrentPageIndex(int currentPageIndex) {
+		this.currentPageIndex = currentPageIndex;
 	}
 }

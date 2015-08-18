@@ -87,6 +87,27 @@ public class HibernatePage extends BaseDAOImpl{
 		this.countSql = countSql;
 	}
 
+	
+	public void setRecordNum(int recordNum) {
+		this.recordNum = recordNum;
+	}
+
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
+	}
+
+	public void setRecords(ArrayList records) {
+		this.records = records;
+	}
+
+	public void setStartRecordIndex(int startRecordIndex) {
+		this.startRecordIndex = startRecordIndex;
+	}
+
+	public void setEndRecordIndex(int endRecordIndex) {
+		this.endRecordIndex = endRecordIndex;
+	}
+
 	/**
 	 * 
 	 * 创建页面
@@ -150,7 +171,7 @@ public class HibernatePage extends BaseDAOImpl{
 				// 创建query对象
 				Query query = session.createQuery(querySql);
 				// 返回其执行了分页方法的list
-				return query.setFirstResult(startRecordIndex-1).setMaxResults(pageRecordNum).list();
+				return query.setFirstResult(startRecordIndex).setMaxResults(pageRecordNum).list();
 			}
 		});
 	}

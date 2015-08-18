@@ -58,14 +58,39 @@ function changeBGColor(e){
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="x in orgs" onclick="selectCheckbox(this)">
+				<tr ng-repeat="x in page.records" onclick="selectCheckbox(this)">
 					<td><input type="checkbox" name="grid_checkbox"
-						value="{{x.id}}" onclick="changeBGColor(this);event.stopPropagation();"></td>
+						value="{{x.id}}"
+						onclick="changeBGColor(this);event.stopPropagation();"></td>
 					<td>{{ x.name }}</td>
 					<td>{{ x.email }}</td>
 				</tr>
+				<tr>
+					<td colspan="3">
+						<div>
+							<button type="button" name="goToFirst" class="btn btn-primary"
+								ng-click="pagingBtn('goToFirst')">首页</button>
+							<button type="button" name="back" class="btn btn-primary"
+								ng-click="pagingBtn('back')">上一页</button>
+							<button type="button" name="next" class="btn btn-primary"
+								ng-click="pagingBtn('next')">下一页</button>
+							<button type="button" name="goToLast" class="btn btn-primary"
+								ng-click="pagingBtn('goToLast')">尾页</button>
+							转到第<input type="text" name="pageIndex" size="1" maxlength="3" />页
+							<button type="button" name="go" class="btn btn-primary"
+								ng-click="pagingBtn('go')">go</button>
+						</div>
+						<div>每页显示{{page.pageRecordNum}}条&nbsp第{{page.currentPageIndex}}/{{page.totalPage}}页</div>
+						<input type="text" id="currentPageIndex"
+						value="{{page.currentPageIndex}}" ng-model="form.currentPageIndex"> <input type="text"
+						id="lastPageIndex" value="{{page.totalPage}}">
+					</td>
+				</tr>
 			</tbody>
 		</table>
+		
+
+		
 		<!-- 
 					<center>
 						<ul class="pagination">
