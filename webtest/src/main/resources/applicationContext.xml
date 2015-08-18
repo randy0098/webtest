@@ -34,8 +34,7 @@
     <bean id="vpcDao" class="com.hp.ecs.userMapping.vpc.VpcDaoImpl">
         <property name="dataSource" ref="dataSource"/>
     </bean>    
--->    
-
+   
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="org.sqlite.JDBC"/>
         <property name="url" value="jdbc:sqlite:saratoga.db"/>
@@ -46,11 +45,49 @@
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
 		<property name="dataSource" ref="dataSource"/>
     </bean>
+-->
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="org.sqlite.JDBC" />
+		<property name="url" value="jdbc:sqlite:saratoga.db" />
+		<property name="username" value="randy" />
+		<property name="password" value="randy" />
+	</bean>
     
-    <bean id="orgDAO" class="resteasy.OrgnizationDAO"/>
+    <!-- 定义Hibernate的SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean" >
+		<!-- mappingResouces属性用来列出全部映射文件 -->
+		<property name="dataSource">
+            <ref bean="dataSource" />
+        </property>
+		<property name="mappingResources">
+			<list>
+				<!-- 以下用来列出Hibernate映射文件 -->
+				<value>Orgnization.hbm.xml</value>
+				<!-- ... -->
+			</list>
+		</property>
+		<!-- 定义Hibernate的SessionFactory的属性 -->
+		<property name="hibernateProperties">
+			<!-- 指定数据库方言、是否自动建表 是否生成SQL语句等 -->
+			<value>
+				hibernate.dialect=org.hibernate.dialect.HSQLDialect
+				hibernate.hbm2ddl.auto=update
+				hibernate.show_sql=true
+				hibernate.format_sql=true
+			</value>
+		</property>
+	</bean>
+	
+    <bean id="orgDAO" class="dao.impl.OrgnizationDAOImpl">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
     	
     <bean class="resteasy.RESTService"/>
-    
+
+
 
 	
 </beans>

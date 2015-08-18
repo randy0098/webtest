@@ -13,112 +13,57 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import vo.OrgnizationVO;
+import dao.impl.OrgnizationDAOImpl;
+
 @Path("/rest")
 public class RESTService {
     @Autowired
-    private OrgnizationDAO orgDAO;
-    
-//    @Deprecated
-//	@POST
-//	@Path("/getOrgList")
-//	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public ArrayList<Orgnization> getOrgList(@Form Orgnization form){
-//		ArrayList<Orgnization> orgs = orgDAO.getOrgList(form);
-//		return orgs;
-//	}
-//	
-//	@Deprecated
-//	@GET
-//	@Path("/getOrgList")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public ArrayList<Orgnization> getOrgList(){
-//		ArrayList<Orgnization> orgs = orgDAO.getOrgList();
-//		return orgs;
-//	}
+    private OrgnizationDAOImpl orgDAO;
 	
 	@POST
 	@Path("/getOrgList")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<Orgnization> getOrgList(Orgnization form){
+	public ArrayList<OrgnizationVO> getOrgList(OrgnizationVO form){
 		System.out.println("form:" + form);
-		ArrayList<Orgnization> orgs = orgDAO.getOrgList(form);
+		ArrayList<OrgnizationVO> orgs = (ArrayList<OrgnizationVO>) orgDAO.findAll();
 		return orgs;
 	}
     
     @POST @Path("/addOrg")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addOrg(Orgnization org) throws Exception {
-//    	Orgnization org = new Orgnization();
-//    	org.setName(form.getName());
-//    	org.setEmail(form.getEmail());
-    	orgDAO.addOrg(org);
+    public Response addOrg(OrgnizationVO org) throws Exception {
+    	orgDAO.save(org);
     	return Response.status(200).build();
     }
     
-//    @Deprecated
-//    @GET @Path("/addOrg/{name}/{email}")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response addOrg(@PathParam("name") String name, @PathParam("email") String email) throws Exception {
-//    	Orgnization org = new Orgnization();
-//    	org.setName(name);
-//    	org.setEmail(email);
-//    	orgDAO.addOrg(org);
-//    	return Response.status(200).entity("success").build();
-//    }
-    
     @GET @Path("/getOneOrg/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Orgnization getOneOrg(@PathParam("id") long id) throws Exception {
-    	Orgnization org = orgDAO.getOneOrg(id);
+    public OrgnizationVO getOneOrg(@PathParam("id") Long id) throws Exception {
+    	OrgnizationVO org = orgDAO.get(id);
     	return org;
     }
     
     @POST @Path("/updateOrg")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateOrg(Orgnization org) throws Exception {
-    	orgDAO.updateOrg(org);
+    public Response updateOrg(OrgnizationVO org) throws Exception {
+    	orgDAO.update(org);
     	return Response.status(200).build();
     }
     
-//    @Deprecated
-//    @POST @Path("/updateOrg")
-//    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-//    public Response updateOrg(@Form Orgnization form) throws Exception {
-//    	Orgnization org = new Orgnization();
-//    	org.setId(form.getId());
-//    	org.setName(form.getName());
-//    	org.setEmail(form.getEmail());
-//    	orgDAO.updateOrg(org);
+//    @GET @Path("/deleteOrgs/{ids}")
+////    @Produces(MediaType.APPLICATION_JSON)
+//    public Response deleteOrgs(@PathParam("ids") String ids) throws Exception {
+//    	orgDAO.deleteOrgs(ids);
 //    	return Response.status(200).build();
 //    }
     
-//    @Deprecated
-//    @GET @Path("/updateOrg/{name}/{email}")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response updateOrg(@PathParam("name") String name, @PathParam("email") String email) throws Exception {
-//    	Orgnization org = new Orgnization();
-//    	org.setName(name);
-//    	org.setEmail(email);
-//    	orgDAO.updateOrg(org);
-//    	return Response.status(200).entity("success").build();
-//    }
-    
-//    @Deprecated
-//    @GET @Path("/deleteOrg/{name}")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response deleteOrg(@PathParam("name") String name) throws Exception {
-//    	Orgnization org = new Orgnization();
-//    	org.setName(name);
-//    	orgDAO.deleteOrg(org);
-//    	return Response.status(200).entity("success").build();
-//    }
-    
-    @GET @Path("/deleteOrgs/{ids}")
-//    @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteOrgs(@PathParam("ids") String ids) throws Exception {
-    	orgDAO.deleteOrgs(ids);
-    	return Response.status(200).build();
-    }
+	@GET
+	@Path("/deleteOrgs/{id}")
+	// @Produces(MediaType.APPLICATION_JSON)
+	public Response deleteOrgs(@PathParam("id") Long id) throws Exception {
+		orgDAO.delete(id);
+		return Response.status(200).build();
+	}
 }
