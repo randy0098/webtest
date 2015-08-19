@@ -31,23 +31,16 @@ public class RESTService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public PageVO getOrgListPage(OrgnizationVO form){
-//		String sender = messageVO.getSender();
-//		String receiver = messageVO.getReceiver();
-//		String sql = " FROM MessageVO WHERE 1=1 ";
-//		if (sender != null && sender.equalsIgnoreCase("") == false) {
-//			sql = sql + " AND sender = '" + sender + "' ";
-//		}
-//		if (receiver != null && receiver.equalsIgnoreCase("") == false) {
-//			sql = sql + " AND receiver LIKE '%" + receiver + "%' ";
-//		}
-//		if (mintime != null && mintime.equalsIgnoreCase("") == false) {
-//			sql = sql + " AND msg_time >= '" + mintime + "' ";
-//		}
-//		if (maxtime != null && maxtime.equalsIgnoreCase("") == false) {
-//			sql = sql + " AND msg_time <= '" + maxtime + "' ";
-//		}
+		String name = form.getName();
+		String email = form.getEmail();
+		String sql = " from OrgnizationVO where 1=1 ";
+		if(name!=null && !name.equalsIgnoreCase("")){
+			sql = sql + " and name like '%" + name + "%'";
+		}
+		if(email!=null && !email.equalsIgnoreCase("")){
+			sql = sql + " and email like '%" + email + "%'";
+		}
 		
-		String sql = " FROM OrgnizationVO WHERE 1=1 ";
 		page.setQuerySql(sql);
 		page.setCountSql("SELECT COUNT(ID) " + sql);
 		page.setPageRecordNum(2);
