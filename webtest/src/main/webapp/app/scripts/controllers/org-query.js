@@ -36,8 +36,17 @@ angular.module('angulartestApp').controller(
 
 			//分页跳转
 			$scope.pagingBtn = function(action){
-				$scope.form = {};
+				if($scope.form == null){
+					$scope.form = {};
+				}
 				$scope.form.action = action;
+				if(action=="go"){
+					$scope.form.currentPageIndex = $scope.pageIndex;
+				}else{
+					if($scope.page!=null){
+						$scope.form.currentPageIndex = $scope.page.currentPageIndex;
+					}
+				}
 				orgService.queryOrgPage($scope.form).then(function(result) {
 					$scope.page = result;
 				});

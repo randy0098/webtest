@@ -8,7 +8,7 @@ import framework.BaseDAO;
 public interface OrgnizationDAO extends BaseDAO{
 	public OrgnizationVO get(Long id);
 	
-	public Integer save(OrgnizationVO org);
+	public Long save(OrgnizationVO org);
 	
 	public void update(OrgnizationVO org);
 	

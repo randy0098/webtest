@@ -76,14 +76,11 @@ function changeBGColor(e){
 								ng-click="pagingBtn('next')">下一页</button>
 							<button type="button" name="goToLast" class="btn btn-primary"
 								ng-click="pagingBtn('goToLast')">尾页</button>
-							转到第<input type="text" name="pageIndex" size="1" maxlength="3" />页
+							转到第<input type="text" name="pageIndex" size="1" maxlength="3" ng-model="pageIndex"/>页
 							<button type="button" name="go" class="btn btn-primary"
 								ng-click="pagingBtn('go')">go</button>
 						</div>
 						<div>每页显示{{page.pageRecordNum}}条&nbsp第{{page.currentPageIndex}}/{{page.totalPage}}页</div>
-						<input type="text" id="currentPageIndex"
-						value="{{page.currentPageIndex}}" ng-model="form.currentPageIndex"> <input type="text"
-						id="lastPageIndex" value="{{page.totalPage}}">
 					</td>
 				</tr>
 			</tbody>

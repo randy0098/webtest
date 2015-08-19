@@ -11,6 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import vo.OrgnizationVO;
@@ -46,21 +47,13 @@ public class RESTService {
 //			sql = sql + " AND msg_time <= '" + maxtime + "' ";
 //		}
 		
-//		String currentPageIndex = form.getCurrentPageIndex();
-//		String currentPageIndex1 = "";
-//		if(currentPageIndex==null){
-//			currentPageIndex1 = currentPageIndex;
-//		}
-		
 		String sql = " FROM OrgnizationVO WHERE 1=1 ";
 		page.setQuerySql(sql);
 		page.setCountSql("SELECT COUNT(ID) " + sql);
-		page.setPageRecordNum(1);
+		page.setPageRecordNum(2);
 		page.paging(form.getAction(), String.valueOf(form.getCurrentPageIndex()));	
 		PageVO pageVO = new PageVO();
-		pageVO.setCurrentPageIndex(page.getCurrentPageIndex());
-		pageVO.setPageRecordNum(page.getPageRecordNum());
-		pageVO.setRecords(page.getRecords());
+		BeanUtils.copyProperties(page, pageVO);
 		return pageVO;
 	}
     

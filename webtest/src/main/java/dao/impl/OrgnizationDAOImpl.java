@@ -15,9 +15,9 @@ public class OrgnizationDAOImpl extends BaseDAOImpl implements OrgnizationDAO {
 	}
 
 	@Override
-	public Integer save(OrgnizationVO org) {
+	public Long save(OrgnizationVO org) {
 		// TODO Auto-generated method stub
-		return (Integer)getHibernateTemplate().save(org);
+		return (Long)getHibernateTemplate().save(org);
 	}
 
 	@Override

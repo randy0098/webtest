@@ -171,7 +171,7 @@ public class HibernatePage extends BaseDAOImpl{
 				// 创建query对象
 				Query query = session.createQuery(querySql);
 				// 返回其执行了分页方法的list
-				return query.setFirstResult(startRecordIndex).setMaxResults(pageRecordNum).list();
+				return query.setFirstResult(startRecordIndex-1).setMaxResults(pageRecordNum).list();
 			}
 		});
 	}
